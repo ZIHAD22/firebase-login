@@ -1,8 +1,14 @@
 import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
+import Loading from "../../../Shared/Loading/Loading";
 
 const Home = () => {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
+  console.log(user);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div>

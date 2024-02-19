@@ -1,13 +1,18 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../../provider/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
   const { register, handleSubmit, reset } = useForm();
+  const navigate = useNavigate();
   const onSubmit = async ({ name, email, password }) => {
     const user = await createUser(email, password, name);
-    console.log(user, name);
+    console.log(user, "signup");
+    if (user) {
+      navigate("/");
+    }
     reset();
   };
   return (
