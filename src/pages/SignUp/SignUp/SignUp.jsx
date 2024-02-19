@@ -1,9 +1,13 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../../provider/AuthProvider";
 
 const SignUp = () => {
+  const { createUser } = useContext(AuthContext);
   const { register, handleSubmit, reset } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async ({ name, email, password }) => {
+    const user = await createUser(email, password);
+    console.log(user, name);
     reset();
   };
   return (

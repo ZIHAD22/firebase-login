@@ -1,8 +1,14 @@
+import { useContext } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
   const location = useLocation();
   const isLogin = location.pathname.includes("login");
+  const handleLogOut = () => {
+    logOut();
+  };
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
@@ -20,7 +26,11 @@ const Navbar = () => {
               <span>Home</span>
             </NavLink>
           </li>
-          {isLogin ? (
+          {user ? (
+            <li onClick={handleLogOut} className="cursor-pointer">
+              Log Out
+            </li>
+          ) : isLogin ? (
             <li className="mx-2">
               <NavLink
                 to="/signup"
