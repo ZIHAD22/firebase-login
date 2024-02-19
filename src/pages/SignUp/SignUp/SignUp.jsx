@@ -6,7 +6,7 @@ const SignUp = () => {
   const { createUser } = useContext(AuthContext);
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = async ({ name, email, password }) => {
-    const user = await createUser(email, password);
+    const user = await createUser(email, password, name);
     console.log(user, name);
     reset();
   };
@@ -28,7 +28,7 @@ const SignUp = () => {
                 <span className="label-text">Name</span>
               </label>
               <input
-                {...register("Name")}
+                {...register("name")}
                 type="Name"
                 placeholder="Name"
                 className="input input-bordered"

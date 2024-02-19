@@ -2,13 +2,14 @@ import { useContext } from "react";
 import { AuthContext } from "../../../provider/AuthProvider";
 
 const Home = () => {
-  const { name } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+
   return (
     <div>
       <div className="hero min-h-screen bg-gray-600 text-white">
         <div className="hero-content text-center">
           <div className="max-w-md">
-            <h1 className="text-5xl font-bold">Hello {name && name}</h1>
+            <h1 className="text-5xl font-bold">Hello {user?.displayName}</h1>
             <p className="py-6">
               Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae
